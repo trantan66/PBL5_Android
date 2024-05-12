@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "461144909109",
+    "firebase_url": "https://pbl5-3cc9a-default-rtdb.firebaseio.com",
+    "project_id": "pbl5-3cc9a",
+    "storage_bucket": "pbl5-3cc9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461144909109:android:8d9ec44a10f330bb6d187c",
+        "android_client_info": {
+          "package_name": "com.midterm.firebasetest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGm3Oh1gekA0ege53nmpEU00oxrHbSrDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

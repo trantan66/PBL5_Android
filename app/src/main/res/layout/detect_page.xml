@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4EF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:id="@+id/imageView"
+            android:onClick="selectImage"
+            android:background="#8BC34A"
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="predict"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/predict"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:onClick="predict" />
+    </LinearLayout>
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/btn_result"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="30dp" />
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="30dp"/>
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="30dp" />
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="30dp" />
+    </Toolbar>
+
+</RelativeLayout>
