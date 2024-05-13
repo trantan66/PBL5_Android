@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DetectPage extends AppCompatActivity {
@@ -69,6 +70,7 @@ public class DetectPage extends AppCompatActivity {
                     Intent intent = new Intent(DetectPage.this, Result.class);
                     intent.putStringArrayListExtra("labelNameArr", labelNameArr);
                     startActivity(intent);
+                    labelNameArr.clear();
                 }
             }
         });
@@ -89,7 +91,8 @@ public class DetectPage extends AppCompatActivity {
             if(recognition.getConfidence() > 0.4){
                 RectF location = recognition.getLocation();
                 canvas.drawRect(location, boxPaint);
-                canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
+                DecimalFormat df = new DecimalFormat("#.##");
+                canvas.drawText(recognition.getLabelName() + ":" + df.format(recognition.getConfidence()), location.left, location.top, textPain);
                 labelNameArr.add(recognition.getLabelName());
             }
         }

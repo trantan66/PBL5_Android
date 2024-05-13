@@ -14,13 +14,16 @@ import java.util.Set;
 
 public class Result extends AppCompatActivity {
     TextView txtResult;
+    ArrayList<String> danhSach;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_page);
         txtResult = findViewById(R.id.txt_name);
         Intent intent = getIntent();
-        ArrayList<String> danhSach = intent.getStringArrayListExtra("labelNameArr");
+        danhSach = new ArrayList<>();
+        danhSach.clear();
+        danhSach = intent.getStringArrayListExtra("labelNameArr");
         Set<String> ds = new HashSet<>(danhSach);
         for(String i : ds){
             txtResult.setText(i);
