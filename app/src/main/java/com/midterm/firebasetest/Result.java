@@ -25,9 +25,7 @@ public class Result extends AppCompatActivity {
         danhSach.clear();
         danhSach = intent.getStringArrayListExtra("labelNameArr");
         Set<String> ds = new HashSet<>(danhSach);
-        for(String i : ds){
-            txtResult.setText(i);
-            Log.d("ABC", i);
-        }
+        String temp = "";
+        txtResult.setText(temp);
     }
 }

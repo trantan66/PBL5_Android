@@ -21,8 +21,8 @@ public class SearchAdapter extends FirebaseRecyclerAdapter<SearchModel, SearchAd
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull SearchModel model) {
-        holder.txtUsername.setText(model.getUsername());
-        holder.txtName.setText(model.getName());
+        holder.txtUsername.setText(model.getName().toUpperCase());
+        holder.txtName.setText(model.getAlternativename());
 
         Glide.with(holder.img.getContext())
                 .load(model.getImage())

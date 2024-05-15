@@ -1,12 +1,12 @@
 package com.midterm.firebasetest;
 
 public class SearchModel {
-    String username;
+    String alternativename;
     String name;
     String image;
 
-    public SearchModel(String username, String name, String image) {
-        this.username = username;
+    public SearchModel(String alternativename, String name, String image) {
+        this.alternativename = alternativename;
         this.name = name;
         this.image = image;
     }
@@ -14,12 +14,12 @@ public class SearchModel {
     public SearchModel() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getAlternativename() {
+        return alternativename;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAlternativename(String alternativename) {
+        this.alternativename = alternativename;
     }
 
     public String getName() {

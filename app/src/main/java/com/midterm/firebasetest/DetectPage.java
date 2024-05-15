@@ -30,7 +30,6 @@ public class DetectPage extends AppCompatActivity {
     Paint textPain = new Paint();
 
     ArrayList<String> labelNameArr;
-    Toolbar toolbar;
     Button btnSearch, btnResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
