@@ -30,11 +30,15 @@ public class DetectPage extends AppCompatActivity {
     Paint textPain = new Paint();
 
     ArrayList<String> labelNameArr;
-    Button btnSearch, btnResult;
+    Button btnSearch, btnResult, btnProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detect_page);
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+        String password = intent.getStringExtra("PASSWORD");
 
         imageView = findViewById(R.id.imageView);
 
@@ -71,6 +75,16 @@ public class DetectPage extends AppCompatActivity {
                     startActivity(intent);
                     labelNameArr.clear();
                 }
+            }
+        });
+        btnProfile = findViewById(R.id.btn_profile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetectPage.this, ProfileActivity.class);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
             }
         });
     }

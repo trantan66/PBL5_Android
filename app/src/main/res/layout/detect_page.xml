@@ -35,25 +35,29 @@
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF">
-
-        <Button
-            android:id="@+id/btn_result"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="30dp" />
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="30dp"/>
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="30dp" />
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="30dp" />
+            <Button
+                android:id="@+id/btn_result"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="10dp"
+                />
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="30dp"
+                />
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginRight="30dp"
+                />
+            <Button
+                android:id="@+id/btn_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                />
     </Toolbar>
 
 </RelativeLayout>

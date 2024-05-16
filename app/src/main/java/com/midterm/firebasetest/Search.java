@@ -3,7 +3,6 @@ package com.midterm.firebasetest;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
@@ -24,6 +23,7 @@ public class Search extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.main_toolbar));
         rvView = findViewById(R.id.rv_view);
         rvView.setLayoutManager(new LinearLayoutManager(this));
+
         FirebaseRecyclerOptions<SearchModel> options =
                 new FirebaseRecyclerOptions.Builder<SearchModel>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("dataset"), SearchModel.class)
@@ -31,7 +31,6 @@ public class Search extends AppCompatActivity {
         searchAdapter = new SearchAdapter(options);
 
         rvView.setAdapter(searchAdapter);
-
     }
 
     @Override

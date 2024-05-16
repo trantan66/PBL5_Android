@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                     if(passwordFromDB.equals(password)){
                         txtUsername.setError(null);
                         Intent intent = new Intent(MainActivity.this, DetectPage.class);
+                        intent.putExtra("USERNAME", username);
+                        intent.putExtra("PASSWORD", password);
                         startActivity(intent);
                     }else{
                         txtPassword.setError("Username or password is wrong");

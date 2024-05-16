@@ -1,14 +1,16 @@
 package com.midterm.firebasetest;
 
 public class SearchModel {
-    String alternativename;
-    String name;
-    String image;
+    String alternativename, name, image, sciencename, family, partused, uses;
 
-    public SearchModel(String alternativename, String name, String image) {
+    public SearchModel(String alternativename, String name, String image, String sciencename, String family, String partused, String uses) {
         this.alternativename = alternativename;
         this.name = name;
         this.image = image;
+        this.sciencename = sciencename;
+        this.family = family;
+        this.partused = partused;
+        this.uses = uses;
     }
 
     public SearchModel() {
@@ -36,5 +38,37 @@ public class SearchModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSciencename() {
+        return sciencename;
+    }
+
+    public void setSciencename(String sciencename) {
+        this.sciencename = sciencename;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getPartused() {
+        return partused;
+    }
+
+    public void setPartused(String partused) {
+        this.partused = partused;
+    }
+
+    public String getUses() {
+        return uses;
+    }
+
+    public void setUses(String uses) {
+        this.uses = uses;
     }
 }

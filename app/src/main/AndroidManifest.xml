@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseTest"
         tools:targetApi="31">
+<!--        <activity-->
+<!--            android:name=".ProfileActivity"-->
+<!--            android:exported="false" />-->
+        <!-- <activity -->
+        <!-- android:name=".DetailActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,20 +31,22 @@
         </activity>
         <activity
             android:name=".DetectPage"
-            android:label="DetectPage" >
-        </activity>
+            android:label="DetectPage" />
         <activity
             android:name=".Register"
-            android:label="Register" >
-        </activity>
+            android:label="Register" />
         <activity
             android:name=".Result"
-            android:label="Result" >
-        </activity>
+            android:label="Result" />
         <activity
             android:name=".Search"
-            android:label="Search" >
-        </activity>
+            android:label="Search" />
+        <activity
+            android:name=".DetailActivity"
+            android:label="DetailActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="ProfileActivity" />
     </application>
 
 </manifest>
