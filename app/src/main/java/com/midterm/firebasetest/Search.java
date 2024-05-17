@@ -70,7 +70,7 @@ public class Search extends AppCompatActivity {
     private void txtSearch(String str){
         FirebaseRecyclerOptions<SearchModel> options =
                 new FirebaseRecyclerOptions.Builder<SearchModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("dataset").orderByChild("name").startAt(str).endAt(str+"~"), SearchModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("dataset").orderByChild("name").startAt(str).endAt(str+"\uf8ff"), SearchModel.class)
                         .build();
         searchAdapter = new SearchAdapter(options);
         searchAdapter.startListening();

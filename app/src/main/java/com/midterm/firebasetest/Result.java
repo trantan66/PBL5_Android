@@ -2,63 +2,77 @@ package com.midterm.firebasetest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Result extends AppCompatActivity {
-    TextView tvPlantname;
-    RecyclerView rvView;
-    ResultAdapter resultAdapter;
-    ArrayList<String> danhSach;
+
+    private RecyclerView rvView;
+    private ResultAdapter resultAdapter;
+    private ArrayList<ResultModel> resultArr;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_page);
-        tvPlantname = findViewById(R.id.tv_nameplant);
 
         rvView = findViewById(R.id.rv_resultview);
         rvView.setLayoutManager(new LinearLayoutManager(this));
 
-        Intent intent = getIntent();
-        danhSach = new ArrayList<>();
-        danhSach.clear();
-        danhSach = intent.getStringArrayListExtra("labelNameArr");
-
-        Set<String> ds = new HashSet<>(danhSach);
-        String str = "";
-        for (String i : ds){
-            str += i;
-        }
-        tvPlantname.setText(str.toUpperCase());
-        FirebaseRecyclerOptions<ResultModel> options =
-                new FirebaseRecyclerOptions.Builder<ResultModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("dataset").orderByChild("name").equalTo(str.toUpperCase()), ResultModel.class)
-                        .build();
-        resultAdapter = new ResultAdapter(options);
-        resultAdapter.startListening();
+        resultArr = new ArrayList<>();
+        resultAdapter = new ResultAdapter(resultArr);
         rvView.setAdapter(resultAdapter);
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        resultAdapter.startListening();
+
+        Intent intent = getIntent();
+        ArrayList<String> danhSach = intent.getStringArrayListExtra("labelNameArr");
+
+        if (danhSach != null && !danhSach.isEmpty()) {
+            Set<String> ds = new HashSet<>(danhSach);
+            String str = "";
+            for (String i : ds) {
+                searchItems(i);
+            }
+        }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        resultAdapter.stopListening();
+    private void searchItems(String keyword) {
+        Log.d("Result", "Searching for keyword: " + keyword); // Log từ khóa tìm kiếm
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("dataset");
+        Query query = databaseReference.orderByChild("name").equalTo(keyword);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                resultArr.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    ResultModel model = snapshot.getValue(ResultModel.class);
+                    if (model != null) {
+                        Log.d("Result", "Found: " + model.getName()); // Log các mục tìm thấy
+                        resultArr.add(model);
+                    }
+                }
+                resultAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Result", "Search failed: " + databaseError.getMessage()); // Log lỗi nếu có
+            }
+        });
     }
 
 }

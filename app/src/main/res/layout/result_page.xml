@@ -7,12 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_nameplant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ABC"
-            android:textSize="30dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_resultview"
             android:layout_width="match_parent"
