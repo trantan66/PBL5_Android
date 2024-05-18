@@ -49,6 +49,7 @@
                 android:layout_marginRight="30dp"
                 />
             <Button
+                android:id="@+id/btn_history"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginRight="30dp"

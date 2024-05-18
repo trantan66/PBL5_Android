@@ -30,7 +30,7 @@ public class DetectPage extends AppCompatActivity {
     Paint textPain = new Paint();
 
     ArrayList<String> labelNameArr;
-    Button btnSearch, btnResult, btnProfile;
+    Button btnSearch, btnResult, btnHistory, btnProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,11 +72,22 @@ public class DetectPage extends AppCompatActivity {
                 if(!labelNameArr.isEmpty()){
                     Intent intent = new Intent(DetectPage.this, Result.class);
                     intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                    intent.putExtra("USERNAME", username);
                     startActivity(intent);
                     labelNameArr.clear();
                 }
             }
         });
+        btnHistory = findViewById(R.id.btn_history);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetectPage.this, History.class);
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            }
+        });
+
         btnProfile = findViewById(R.id.btn_profile);
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
