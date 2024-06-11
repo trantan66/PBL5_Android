@@ -47,7 +47,7 @@ import android.graphics.RectF;
 public class Yolov5TFLiteDetector {
 
     private final Size INPNUT_SIZE = new Size(416, 416);
-    private final int[] OUTPUT_SIZE = new int[]{1, 10647, 23};
+    private final int[] OUTPUT_SIZE = new int[]{1, 10647, 22};
     private Boolean IS_INT8 = false;
     private final float DETECT_THRESHOLD = 0.25f;
     private final float IOU_THRESHOLD = 0.45f;
