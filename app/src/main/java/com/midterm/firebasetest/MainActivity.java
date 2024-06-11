@@ -16,14 +16,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     TextView txtUsername;
     TextView txtPassword;
+    TextView txtRegister;
     Button btnLogin;
-    Button btnRegister;
-
+    ArrayList<String> labelNameArr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         txtUsername = findViewById(R.id.txt_username);
         txtPassword = findViewById(R.id.txt_password);
         btnLogin = findViewById(R.id.btn_login);
-        btnRegister = findViewById(R.id.btn_regiter);
+        txtRegister = findViewById(R.id.txt_register);
+        labelNameArr = new ArrayList<>();
+        labelNameArr.add("1");
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Register.class);
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, DetectPage.class);
                         intent.putExtra("USERNAME", username);
                         intent.putExtra("PASSWORD", password);
+                        intent.putExtra("labelNameArr", labelNameArr);
                         startActivity(intent);
                     }else{
                         txtPassword.setError("Username or password is wrong");

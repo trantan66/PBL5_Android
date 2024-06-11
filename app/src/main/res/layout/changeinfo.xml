@@ -1,52 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="160dp">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/ic_launcher_background"/>
-
-        <TextView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INFO"
-            android:textSize="50dp"
-            android:gravity="center"
-            android:layout_marginTop="30dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="30dp"
-            android:gravity="left"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_margin="30dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            android:layout_centerInParent="true">
 
-        <EditText
-            android:id="@+id/txt_nameinfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            />
-        <Button
-            android:id="@+id/btn_changeinfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Change info"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="24dp"
+                android:background="@drawable/lavender_border">
 
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/userprofile"
+                    android:backgroundTint="@color/lavender"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="INFO"
+                    android:textSize="50dp"
+                    android:gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/lavender"/>
+
+                <EditText
+                    android:id="@+id/txt_nameinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="40dp"
+                    android:padding="8dp"
+                    android:hint="Name"
+                    android:drawableLeft="@drawable/personicon"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/black"
+                    />
+                <Button
+                    android:id="@+id/btn_changeinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change"
+                    android:backgroundTint="@color/lavender"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

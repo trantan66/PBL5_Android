@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -121,7 +122,7 @@ public class HistoryAdapter extends FirebaseRecyclerAdapter<HistoryModel, Histor
         CircleImageView img;
         TextView txtUsername, txtName, txtTime;
         CardView cardViewItem;
-        Button btnDelete;
+        ImageButton btnDelete;
         public myViewHolder(@NonNull View itemView){
             super(itemView);
             img = itemView.findViewById(R.id.img1);

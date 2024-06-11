@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,13 +32,17 @@ public class ProfileActivity extends AppCompatActivity {
     EditText txtNameInfo, txtOldPassword, txtNewPassword, txtConfirmPassword;
     DatabaseReference databaseReference;
     String username, password, name;
+    ImageButton btnSearch, btnResult, btnHistory, btnHome;
+    ArrayList<String> labelNameArr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Intent intent = getIntent();
 
+        labelNameArr = intent.getStringArrayListExtra("labelNameArr");
         username = intent.getStringExtra("USERNAME");
+        password = intent.getStringExtra("PASSWORD");
         databaseReference = FirebaseDatabase.getInstance().getReference("account");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -164,6 +170,53 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        btnSearch = findViewById(R.id.btn_search);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, Search.class);
+                startActivity(intent);
+            }
+        });
+        btnResult = findViewById(R.id.btn_result);
+        btnResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!labelNameArr.isEmpty()){
+                    Intent intent = new Intent(ProfileActivity.this, Result.class);
+                    intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                    intent.putExtra("USERNAME", username);
+                    intent.putExtra("PASSWORD", password);
+                    startActivity(intent);
+                    labelNameArr.clear();
+                }
+            }
+        });
+        btnHistory = findViewById(R.id.btn_history);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, History.class);
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
+        btnHome = findViewById(R.id.btn_home);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, DetectPage.class);
+                if(labelNameArr.isEmpty()){
+                    labelNameArr.add("1");
+                }
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
     }
     public Boolean validateOldPassword(String str){
         if(str.isEmpty()){

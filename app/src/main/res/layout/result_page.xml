@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,12 +8,93 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/lavender"
+            android:backgroundTint="@color/lavender">
 
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/homeicon"
+                android:backgroundTint="@color/white"
+                android:layout_marginRight="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:text="Result"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/basil_11272776"
+                android:layout_marginLeft="30dp"
+                />
+
+        </Toolbar>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_resultview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_result"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/maple_6221759"/>
+
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/education"/>
+
+            <ImageButton
+                android:id="@+id/btn_history"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/file"/>
+
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/management"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+</RelativeLayout>

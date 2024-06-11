@@ -46,37 +46,46 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
                 .error(R.drawable.ic_launcher_foreground)
                 .into(holder.img);
 
-        holder.cardViewItem.setOnClickListener(v -> {
-            final DialogPlus dialogPlus = DialogPlus.newDialog(holder.img.getContext())
-                    .setContentHolder(new ViewHolder(R.layout.activity_detail))
-                    .setExpanded(true, 1603)
-                    .create();
+        holder.cardViewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            View dialogView = dialogPlus.getHolderView();
+                final DialogPlus dialogPlus = DialogPlus.newDialog(holder.img.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.activity_detail))
+                        .setExpanded(true, 1603)
+                        .create();
 
-            ImageView plantImage = dialogView.findViewById(R.id.plant_image);
-            TextView txtPlantName = dialogView.findViewById(R.id.plant_name);
-            TextView txtPlantAlternativename = dialogView.findViewById(R.id.plant_alternativename);
-            TextView txtPlantSciencename = dialogView.findViewById(R.id.plant_sciencename);
-            TextView txtPlantFamily = dialogView.findViewById(R.id.plant_family);
-            TextView txtPlantPartused = dialogView.findViewById(R.id.plant_partused);
-            TextView txtUses = dialogView.findViewById(R.id.uses);
 
-            Glide.with(holder.img.getContext())
-                    .load(model.getImage())
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .centerCrop()
-                    .error(R.drawable.ic_launcher_foreground)
-                    .into(plantImage);
+                View view = dialogPlus.getHolderView();
 
-            txtPlantName.setText(model.getName() != null ? model.getName() : "N/A");
-            txtPlantAlternativename.setText(model.getAlternativename() != null ? model.getAlternativename() : "N/A");
-            txtPlantSciencename.setText(model.getSciencename() != null ? model.getSciencename() : "N/A");
-            txtPlantFamily.setText(model.getFamily() != null ? model.getFamily() : "N/A");
-            txtPlantPartused.setText(model.getPartused() != null ? model.getPartused() : "N/A");
-            txtUses.setText(model.getUses() != null ? model.getUses() : "N/A");
+                ImageView plantImage = view.findViewById(R.id.plant_image);
+                TextView txtPlantName = view.findViewById(R.id.plant_name);
+                TextView txtPlantAlternativename = view.findViewById(R.id.plant_alternativename);
+                TextView txtPlantSciencename = view.findViewById(R.id.plant_sciencename);
+                TextView txtPlant_family = view.findViewById(R.id.plant_family);
+                TextView txtPlantPartused = view.findViewById(R.id.plant_partused);
+                TextView txtUses = view.findViewById(R.id.uses);
 
-            dialogPlus.show();
+
+//                Glide.with(holder.img.getContext())
+//                        .load(model.getImage())
+//                        .into(plantImage);
+                Glide.with(holder.img.getContext())
+                        .load(model.getImage())
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .circleCrop()
+                        .error(R.drawable.ic_launcher_foreground)
+                        .into(plantImage);
+
+                txtPlantName.setText(model.getName());
+                txtPlantAlternativename.setText(model.getAlternativename());
+                txtPlantSciencename.setText(model.getSciencename());
+                txtPlant_family.setText(model.getFamily());
+                txtPlantPartused.setText(model.getPartused());
+                txtUses.setText(model.getUses());
+
+                dialogPlus.show();
+            }
         });
     }
 

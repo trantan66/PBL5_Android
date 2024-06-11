@@ -1,64 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F0F4EF">
-
-    <LinearLayout
+    android:layout_height="match_parent">
+    <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:id="@+id/imageView"
-            android:onClick="selectImage"
-            android:background="#8BC34A"
-            android:layout_margin="20dp"/>
-
-        <Button
+        android:layout_height="70dp"
+        android:background="@color/lavender"
+        android:backgroundTint="@color/lavender">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="predict"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/predict"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
-            android:onClick="predict" />
-    </LinearLayout>
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:text="Herb Detector"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/basil_11272776"
+            android:layout_marginLeft="30dp"
+            />
 
-    <Toolbar
+    </Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:background="@drawable/lavender_border">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/imageView"
+                android:onClick="selectImage"
+                android:background="@drawable/uploadimg"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Predict"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/predict"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:onClick="predict"
+                android:backgroundTint="@color/lavender"/>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF">
-            <Button
+        android:background="#FFFFFF"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:gravity="center">
+
+            <ImageButton
                 android:id="@+id/btn_result"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="10dp"
-                />
-            <Button
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/maple_6221759"/>
+
+            <ImageButton
                 android:id="@+id/btn_search"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="30dp"
-                />
-            <Button
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/education"/>
+
+            <ImageButton
                 android:id="@+id/btn_history"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="30dp"
-                />
-            <Button
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/file"/>
+
+            <ImageButton
                 android:id="@+id/btn_profile"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="70dp"
-                />
-    </Toolbar>
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="#8692F7"
+                android:background="@drawable/management"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
 </RelativeLayout>

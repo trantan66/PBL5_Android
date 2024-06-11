@@ -3,6 +3,8 @@ package com.midterm.firebasetest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +29,9 @@ public class Result extends AppCompatActivity {
     private RecyclerView rvView;
     private ResultAdapter resultAdapter;
     private ArrayList<ResultModel> resultArr;
-    String username;
-
+    String username, password;
+    ImageButton btnSearch, btnHistory, btnProfile, btnHome;
+    ArrayList<String> labelNameArr;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +45,66 @@ public class Result extends AppCompatActivity {
         rvView.setAdapter(resultAdapter);
 
         Intent intent = getIntent();
-        ArrayList<String> danhSach = intent.getStringArrayListExtra("labelNameArr");
+        labelNameArr = intent.getStringArrayListExtra("labelNameArr");
         username = intent.getStringExtra("USERNAME");
+        password = intent.getStringExtra("PASSWORD");
 
-        if (danhSach != null && !danhSach.isEmpty()) {
-            Set<String> ds = new HashSet<>(danhSach);
+        if (labelNameArr != null && !labelNameArr.isEmpty()) {
+            Set<String> ds = new HashSet<>(labelNameArr);
             for (String i : ds) {
                 searchItems(i);
             }
         }
+        btnSearch = findViewById(R.id.btn_search);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Result.this, Search.class);
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
+        btnHistory = findViewById(R.id.btn_history);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Result.this, History.class);
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
+
+        btnProfile = findViewById(R.id.btn_profile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Result.this, ProfileActivity.class);
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
+        btnHome = findViewById(R.id.btn_home);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Result.this, DetectPage.class);
+                intent.putStringArrayListExtra("labelNameArr", labelNameArr);
+                intent.putExtra("USERNAME", username);
+                intent.putExtra("PASSWORD", password);
+                startActivity(intent);
+            }
+        });
     }
 
     private void searchItems(String keyword) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("dataset");
         Query query = databaseReference.orderByChild("name").equalTo(keyword);
-
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,7 +112,7 @@ public class Result extends AppCompatActivity {
                     ResultModel model = snapshot.getValue(ResultModel.class);
                     if (model != null) {
                         resultArr.add(model);
-                        addToHistory(model, username);
+//                        addToHistory(model, username);
                     }
                 }
                 resultAdapter.notifyDataSetChanged();

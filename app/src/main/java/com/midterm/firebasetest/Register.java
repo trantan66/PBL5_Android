@@ -7,11 +7,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Register extends AppCompatActivity {
     EditText txtUsername, txtName, txtPassword, txtConfirmpassword;
@@ -31,7 +36,7 @@ public class Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateUsername() || !validatePassword() || !validateConfirmPassword() || !validateName()){
+                if(!validateUsername() || !validatePassword() || !validateConfirmPassword() || !validateName() || !checkUser()){
 
                 }else{
                     database = FirebaseDatabase.getInstance();
@@ -102,5 +107,29 @@ public class Register extends AppCompatActivity {
             txtConfirmpassword.setError(null);
             return true;
         }
+    }
+    private Boolean check = false;
+    public Boolean checkUser(){
+        String username = txtUsername.getText().toString().trim();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("account");
+        Query checkUserDatabase = reference.orderByChild("username").equalTo(username);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    check = true;
+                    txtUsername.setError("Username is already exist!");
+                }else{
+                    check = false;
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return check;
     }
 }
