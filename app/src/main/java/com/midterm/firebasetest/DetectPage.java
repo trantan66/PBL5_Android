@@ -132,32 +132,35 @@ public class DetectPage extends AppCompatActivity {
     }
 
     public void predict(View view){
-        ArrayList<Recognition> recognitions =  yolov5TFLiteDetector.detect(bitmap);
-        Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-        Canvas canvas = new Canvas(mutableBitmap);
+        if(bitmap != null){
+            ArrayList<Recognition> recognitions =  yolov5TFLiteDetector.detect(bitmap);
+            Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+            Canvas canvas = new Canvas(mutableBitmap);
 
-        labelNameArr.clear();
+            labelNameArr.clear();
 
-        for(Recognition recognition: recognitions){
-            if(recognition.getConfidence() > 0.4){
-                RectF location = recognition.getLocation();
-                canvas.drawRect(location, boxPaint);
-                DecimalFormat df = new DecimalFormat("#.##");
-                canvas.drawText(recognition.getLabelName() + ":" + df.format(recognition.getConfidence()), location.left, location.top, textPain);
-                labelNameArr.add(recognition.getLabelName());
+            for(Recognition recognition: recognitions){
+                if(recognition.getConfidence() > 0.4){
+                    RectF location = recognition.getLocation();
+                    canvas.drawRect(location, boxPaint);
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    canvas.drawText(recognition.getLabelName() + ":" + df.format(recognition.getConfidence()), location.left, location.top, textPain);
+                    labelNameArr.add(recognition.getLabelName());
+                }
+            }
+
+            //recognition.getLabelName()
+
+            imageView.setImageBitmap(mutableBitmap);
+
+            if (!labelNameArr.isEmpty()) {
+                Set<String> ds = new HashSet<>(labelNameArr);
+                for (String i : ds) {
+                    searchItems(i);
+                }
             }
         }
 
-        //recognition.getLabelName()
-
-        imageView.setImageBitmap(mutableBitmap);
-
-        if (!labelNameArr.isEmpty()) {
-            Set<String> ds = new HashSet<>(labelNameArr);
-            for (String i : ds) {
-                searchItems(i);
-            }
-        }
     }
     private void searchItems(String keyword) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("dataset");

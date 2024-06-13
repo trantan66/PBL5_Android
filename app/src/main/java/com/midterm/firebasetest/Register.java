@@ -119,10 +119,10 @@ public class Register extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    check = true;
+                    check = false;
                     txtUsername.setError("Username is already exist!");
                 }else{
-                    check = false;
+                    check = true;
                 }
             }
             @Override
